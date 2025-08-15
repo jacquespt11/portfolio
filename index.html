@@ -1,146 +1,206 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Perfect TSHIBANGU JACQUES</title>
-    <link rel="stylesheet" href="Styles.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F; /* Fond sombre bleu marine */
+            color: #CCD6F6; /* Texte clair */
+        }
+        .hero {
+            background-image: url('images/hero_background.jpg'); /* Remplacer par l'image de votre choix */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Personnalisation des boutons de navigation Swiper pour les rendre clairs */
+        .swiper-button-next, .swiper-button-prev {
+            color: #64FFDA;
+        }
+        
+        /* Personnalisation des points de pagination Swiper */
+        .swiper-pagination-bullet-active {
+            background: #64FFDA;
+        }
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script defer src="script.js"></script>
 </head>
 <body>
-
-    <!-- Section 1 : Hero -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Bienvenue sur mon Portfolio</h1>
-            <p>Je transforme les idées en expériences numériques uniques et performantes.</p>
-            <a href="#contact" class="btn">Me Contacter</a>
+    
+    <header id="home" class="hero bg-gray-900 text-white text-center py-40 px-6">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 ">
+                Bienvenue sur mon Portfolio
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 ">
+                Je transforme les idées en expériences numériques uniques et performantes.
+            </p>
+            <a href="#contact" class="inline-block bg-[#64FFDA] hover:bg-[#52D4B6] text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 opacity-0">
+                Me Contacter
+            </a>
         </div>
     </header>
 
-    <!-- Section 2 : Profil -->
-    <section id="profil" class="profil">
-        <div class="container profil-container">
-            <img src="assets/images/profil_perfect.jpg" alt="Perfect TSHIBANGU JACQUES" class="profil-img">
-            <div class="profil-text">
-                <h2>Perfect TSHIBANGU JACQUES</h2>
-                <p>Développeur Web & IT Engineer passionné, formé à Kadea Academy et titulaire d'une Licence en Informatique Industrielle. 
-                Curieux et créatif, je conçois des solutions digitales innovantes et performantes, tout en possédant une solide expérience en réseaux et maintenance informatique.</p>
+    <section id="profil" class="py-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12 opacity-1">
+            <figure class="relative w-full max-w-sm md:w-1/3 group">
+                <img src="assets/images/profil_perfect.jpg" alt="Perfect TSHIBANGU JACQUES" class="profil-img rounded-lg shadow-2xl transition duration-500 transform group-hover:scale-105">
+                <figcaption class="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-20 transition-opacity rounded-lg"></figcaption>
+            </figure>
+            <div class="md:w-2/3 text-center md:text-left">
+                <h2 class="text-3xl font-bold mb-4 text-[#64FFDA]">Perfect TSHIBANGU JACQUES</h2>
+                <p class="text-lg text-gray-300">
+                    Développeur fullstack Web, mobile et desk & IT Engineer passionné, formé à Kadea Academy et titulaire d'une Licence en Informatique Industrielle. 
+                    Curieux et créatif, je conçois des solutions digitales innovantes et performantes, tout en possédant une solide expérience en réseaux et maintenance informatique.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Section 3 : À propos -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>À propos de moi</h2>
-            <p>
-                Je suis un passionné des technologies, capable de travailler sur toutes les étapes d’un projet web ou applicatif : conception, design, développement et déploiement.
-                Mon parcours m’a amené à développer des compétences variées, allant du développement web (frontend et backend) à la gestion de réseaux informatiques.
-                J’aime relever des défis techniques et collaborer avec des équipes multidisciplinaires.
-            </p>
-        </div>
-    </section>
+    <section id="cv" class="py-20 bg-gray-900 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#64FFDA] opacity-0">Compétences Techniques</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide p-6 rounded-lg bg-slate-800 shadow-xl flex flex-col items-center justify-center text-center border-t-2 border-[#64FFDA]">
+                        <h4 class="text-xl font-bold mb-4">Développement Web, mobile et desk</h4>
+                        <ul class="list-none space-y-2">
+                            <li><i class="fab fa-html5 text-orange-500 text-2xl mr-2"></i>HTML</li>
+                            <li><i class="fab fa-css3-alt text-blue-500 text-2xl mr-2"></i>CSS</li>
+                            <li><i class="fab fa-bootstrap text-purple-500 text-2xl mr-2"></i>Bootstrap</li>
+                            <li><i class="fab fa-tailwindcss text-teal-400 text-2xl mr-2"></i>Tailwind CSS</li>
+                            <li><i class="fab fa-js text-yellow-400 text-2xl mr-2"></i>JavaScript</li>
+                            <li><i class="fab fa-node-js text-green-500 text-2xl mr-2"></i>Node.js</li>
+                            <li><i class="fab fa-react text-blue-400 text-2xl mr-2"></i>React</li>
+                            <li><i class="fab fa-react text-blue-400 text-2xl mr-2"></i>React Native</li>
+                            <li><i class="fas fa-server text-gray-400 text-2xl mr-2"></i>AdonisJS</li>
+                            <li><i class="fas fa-server text-gray-400 text-2xl mr-2"></i>ExpressJS</li>
+                            <li><i class="fas fa-desktop text-gray-400 text-2xl mr-2"></i>ElectronJS</li>
 
-    <!-- Section 4 : Curriculum Vitae -->
-    <section id="cv" class="cv">
-        <div class="container">
-            <h2>Curriculum Vitae</h2>
-
-            <h3>Diplômes & Formations</h3>
-            <ul>
-                <li>Licence en Informatique Industrielle</li>
-                <li>Graduat en Informatique Industrielle et Réseaux Informatiques</li>
-                <li>Formation Développement Web - Kadea Academy (12 mois)</li>
-                <li>Formation en Maintenance Informatique</li>
-            </ul>
-
-            <h3>Compétences Techniques</h3>
-            <ul>
-                <li><strong>Développement Web :</strong> HTML5, CSS3, JavaScript, React, React Native, AdonisJS, ElectronJS</li>
-                <li><strong>Design UI/UX :</strong> Figma, Photoshop, Canva</li>
-                <li><strong>Base de données :</strong> MySQL, PostgreSQL</li>
-                <li><strong>Réseaux & IT :</strong> Administration réseaux, configuration d'équipements, maintenance hardware/software</li>
-            </ul>
-
-            <h3>Soft Skills</h3>
-            <ul>
-                <li>Communication claire</li>
-                <li>Travail en équipe</li>
-                <li>Résolution de problèmes</li>
-                <li>Créativité</li>
-                <li>Gestion du temps</li>
-                <li>Adaptabilité</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Section 5 : Projets -->
-    <section id="projets" class="projets">
-        <div class="container">
-            <h2>Mes Projets</h2>
-            <div class="projet-card">
-                <h3>Plume Library</h3>
-                <p>Réseau social de littérature permettant aux auteurs et lecteurs de partager et commenter des œuvres.</p>
-            </div>
-            <div class="projet-card">
-                <h3>Admoversh</h3>
-                <p>Application desktop pour la gestion complète des boulangeries et pâtisseries.</p>
-            </div>
-            <div class="projet-card">
-                <h3>Surveillance Network</h3>
-                <p>Plateforme collaborative de gestion des réseaux internet pour les fournisseurs d’accès et entreprises.</p>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide p-6 rounded-lg bg-slate-800 shadow-xl flex flex-col items-center justify-center text-center border-t-2 border-[#64FFDA]">
+                        <h4 class="text-xl font-bold mb-4">Design UI/UX</h4>
+                        <ul class="list-none space-y-2">
+                            <li><i class="fab fa-figma text-purple-500 text-2xl mr-2"></i>Figma</li>
+                            <li><i class="fas fa-image text-blue-300 text-2xl mr-2"></i>Adobe Photoshop</li>
+                            <li><i class="fas fa-palette text-pink-400 text-2xl mr-2"></i>Canva</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide p-6 rounded-lg bg-slate-800 shadow-xl flex flex-col items-center justify-center text-center border-t-2 border-[#64FFDA]">
+                        <h4 class="text-xl font-bold mb-4">Base de données</h4>
+                        <ul class="list-none space-y-2">
+                            <li><i class="fas fa-database text-blue-500 text-2xl mr-2"></i>MySQL</li>
+                            <li><i class="fas fa-database text-blue-600 text-2xl mr-2"></i>PostgreSQL</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide p-6 rounded-lg bg-slate-800 shadow-xl flex flex-col items-center justify-center text-center border-t-2 border-[#64FFDA]">
+                        <h4 class="text-xl font-bold mb-4">Réseaux & IT</h4>
+                        <ul class="list-none space-y-2">
+                            <li><i class="fas fa-network-wired text-green-500 text-2xl mr-2"></i>Administration réseaux</li>
+                            <li><i class="fas fa-tools text-yellow-500 text-2xl mr-2"></i>Maintenance hardware</li>
+                            <li><i class="fas fa-shield-alt text-red-500 text-2xl mr-2"></i>Sécurité informatique</li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </section>
 
-    <!-- Section 6 : Contact -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>Téléphone : <strong>+243 82 691 8783</strong></p>
-            <p>Email : <strong>tshibangup55@gmail.com</strong></p>
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Votre nom" required>
-                <input type="email" id="email" placeholder="Votre email" required>
-                <textarea id="message" placeholder="Votre message" required></textarea>
-                <button type="submit" class="btn">Envoyer</button>
-            </form>
-            <p id="formMessage" class="form-message"></p>
+    <section id="projets" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#64FFDA] opacity-0">Mes Projets</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="projet-card bg-slate-800 rounded-lg p-6 shadow-xl transition-transform transform hover:scale-105 group">
+                    <figure>
+                        <img src="assets/images/plume_library.jpeg" alt="Projet Plume Library" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <figcaption class="text-xl font-semibold mb-2 group-hover:text-[#64FFDA] transition-colors">Plume Library</figcaption>
+                    </figure>
+                    <p class="text-gray-300 text-sm">Réseau social de littérature permettant aux auteurs et lecteurs de partager et commenter des œuvres.</p>
+                </div>
+                <div class="projet-card bg-slate-800 rounded-lg p-6 shadow-xl transition-transform transform hover:scale-105 group">
+                    <figure>
+                        <img src="assets/images/admoversh.png" alt="Projet Admoversh" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <figcaption class="text-xl font-semibold mb-2 group-hover:text-[#64FFDA] transition-colors">Admoversh</figcaption>
+                    </figure>
+                    <p class="text-gray-300 text-sm">Application desktop pour la gestion complète des boulangeries et pâtisseries.</p>
+                </div>
+                <div class="projet-card bg-slate-800 rounded-lg p-6 shadow-xl transition-transform transform hover:scale-105 group">
+                    <figure>
+                        <img src="assets/images/Surveillance_Network.png" alt="Projet Surveillance Network" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <figcaption class="text-xl font-semibold mb-2 group-hover:text-[#64FFDA] transition-colors">Surveillance Network</figcaption>
+                    </figure>
+                    <p class="text-gray-300 text-sm">Plateforme collaborative de gestion des réseaux internet pour les fournisseurs d’accès et entreprises.</p>
+                </div>
+                <div class="projet-card bg-slate-800 rounded-lg p-6 shadow-xl transition-transform transform hover:scale-105 group">
+                    <figure>
+                        <img src="images/projet_cloneGoogleContact.jpg" alt="Projet Emploi" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <figcaption class="text-xl font-semibold mb-2 group-hover:text-[#64FFDA] transition-colors">Clone Google Contact</figcaption>
+                    </figure>
+                    <p class="text-gray-300 text-sm">Application web de gestion des contacts, inspirée de Google Contacts.</p>
+                </div>
+                <div class="projet-card bg-slate-800 rounded-lg p-6 shadow-xl transition-transform transform hover:scale-105 group">
+                    <figure>
+                        <img src="assets/images/" alt="Projet Clone Google Drive" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <figcaption class="text-xl font-semibold mb-2 group-hover:text-[#64FFDA] transition-colors">Clone Twitter</figcaption>
+                    </figure>
+                    <p class="text-gray-300 text-sm">Application web réseau social, inspirée de Twitter.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-    <p>© 2025 Perfect TSHIBANGU JACQUES. Tous droits réservés.</p>
-    <div class="social-links">
-      <a href="https://www.facebook.com/perfect.tshibangu?locale=fr_FR" target="_blank" aria-label="Facebook">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.342v21.316C0 23.4.6 24 1.325 24h11.495V14.709h-3.13v-3.62h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.62h-3.12V24h6.116C23.4 24 24 23.4 24 22.658V1.342C24 .6 23.4 0 22.675 0z"/>
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/perfect-tshibangu-bba8702b8/" target="_blank" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.447 20.452H17.21V14.9c0-1.323-.027-3.027-1.844-3.027-1.846 0-2.129 1.441-2.129 2.927v5.652h-3.237V9h3.106v1.561h.045c.433-.82 1.494-1.684 3.073-1.684 3.29 0 3.896 2.166 3.896 4.982v6.593zM5.337 7.433c-1.036 0-1.878-.843-1.878-1.878 0-1.036.842-1.879 1.878-1.879 1.037 0 1.878.843 1.878 1.879 0 1.035-.841 1.878-1.878 1.878zm1.618 13.019H3.718V9h3.237v11.452zM22.225 0H1.771C.792 0 0 .77 0 1.721v20.558C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.279V1.721C24 .77 23.2 0 22.225 0z"/>
-        </svg>
-      </a>
-      <a href="https://www.instagram.com/perfect.tshibangu/" target="_blank" aria-label="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.057 2.005.248 2.477.415a4.92 4.92 0 011.77 1.152 4.92 4.92 0 011.152 1.77c.167.472.358 1.271.415 2.477.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.057 1.206-.248 2.005-.415 2.477a4.92 4.92 0 01-1.152 1.77 4.92 4.92 0 01-1.77 1.152c-.472.167-1.271.358-2.477.415-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.206-.057-2.005-.248-2.477-.415a4.92 4.92 0 01-1.77-1.152 4.92 4.92 0 01-1.152-1.77c-.167-.472-.358-1.271-.415-2.477C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.057-1.206.248-2.005.415-2.477a4.92 4.92 0 011.152-1.77 4.92 4.92 0 011.77-1.152c.472-.167 1.271-.358 2.477-.415C8.416 2.175 8.796 2.163 12 2.163M12 0C8.741 0 8.332.014 7.052.072 5.775.13 4.897.304 4.158.555a6.92 6.92 0 00-2.49 1.623A6.92 6.92 0 00.555 4.158c-.251.739-.425 1.617-.483 2.894C.014 8.332 0 8.741 0 12s.014 3.668.072 4.948c.058 1.277.232 2.155.483 2.894a6.92 6.92 0 001.623 2.49 6.92 6.92 0 002.49 1.623c.739.251 1.617.425 2.894.483 1.28.058 1.689.072 4.948.072s3.668-.014 4.948-.072c1.277-.058 2.155-.232 2.894-.483a6.92 6.92 0 002.49-1.623 6.92 6.92 0 001.623-2.49c.251-.739.425-1.617.483-2.894.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.232-2.155-.483-2.894a6.92 6.92 0 00-1.623-2.49A6.92 6.92 0 0019.842.555c-.739-.251-1.617-.425-2.894-.483C15.668.014 15.259 0 12 0z"/>
-          <path d="M12 5.838A6.162 6.162 0 005.838 12 6.162 6.162 0 0012 18.162 6.162 6.162 0 0018.162 12 6.162 6.162 0 0012 5.838zm0 10.162A4 4 0 118 12a4 4 0 014 4z"/>
-          <circle cx="18.406" cy="5.594" r="1.44"/>
-        </svg>
-      </a>
-      <a href="https://github.com/jacquespt11" target="_blank" aria-label="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.17c-3.338.726-4.033-1.415-4.033-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.304 3.495.997.107-.775.418-1.304.76-1.604-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.305-.536-1.527.117-3.176 0 0 1.009-.322 3.301 1.23a11.518 11.518 0 013.003-.404c1.018.005 2.045.138 3.003.404 2.291-1.552 3.298-1.23 3.298-1.23.655 1.649.243 2.871.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.803 5.622-5.475 5.921.43.371.823 1.102.823 2.222v3.293c0 .322.217.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-
+    <section id="contact" class="py-20 bg-gray-800 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 text-[#64FFDA]">Contact</h2>
+            <p class="text-lg text-gray-300 mb-8">N'hésitez pas à me contacter. Je serai ravi de discuter de votre projet.</p>
+            <div class="max-w-xl mx-auto">
+                <form id="contactForm" class="flex flex-col gap-6">
+                    <input type="text" id="name" placeholder="Votre nom" class="bg-slate-800 border border-slate-700 text-gray-300 p-4 rounded-lg focus:outline-none focus:border-[#64FFDA]" required>
+                    <input type="email" id="email" placeholder="Votre email" class="bg-slate-800 border border-slate-700 text-gray-300 p-4 rounded-lg focus:outline-none focus:border-[#64FFDA]" required>
+                    <textarea id="message" placeholder="Votre message" rows="6" class="bg-slate-800 border border-slate-700 text-gray-300 p-4 rounded-lg focus:outline-none focus:border-[#64FFDA]" required></textarea>
+                    <button type="submit" class="bg-[#64FFDA] hover:bg-[#52D4B6] text-gray-900 font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105 active:scale-95">
+                        Envoyer
+                    </button>
+                    <p id="formMessage" class="mt-4"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="text-center bg-gray-900 py-8">
+        <div class="container mx-auto">
+            <p>© 2025 Perfect TSHIBANGU JACQUES. Tous droits réservés.</p>
+            <div class="social-links mt-4 flex justify-center space-x-6">
+                <a href="https://www.facebook.com/perfect.tshibangu" target="_blank" aria-label="Facebook" class="text-white hover:text-[#64FFDA] transition duration-300">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/perfect-tshibangu-bba8702b8/" target="_blank" aria-label="LinkedIn" class="text-white hover:text-[#64FFDA] transition duration-300">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/perfect.tshibangu/" target="_blank" aria-label="Instagram" class="text-white hover:text-[#64FFDA] transition duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://github.com/jacquespt11" target="_blank" aria-label="GitHub" class="text-white hover:text-[#64FFDA] transition duration-300">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+            </div>
+        </div>
     </footer>
-
 </body>
 </html>

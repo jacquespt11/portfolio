@@ -1,150 +1,96 @@
-// ==============================
-// Helpers
-// ==============================
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-
-document.addEventListener('DOMContentLoaded', () => {
-  // 1) Scroll reveal animations
-  const revealEls = $$('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    // Fallback si IO n'est pas supporté
-    revealEls.forEach(el => el.classList.add('visible'));
-  }
-
-  // 2) Smooth scroll interne + focus accessibilité
-  $$('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const targetId = link.getAttribute('href').slice(1);
-      const target = document.getElementById(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      const heading = target.querySelector('h2, h1, [tabindex]');
-      setTimeout(() => {
-        (heading || target).setAttribute('tabindex', '-1');
-        (heading || target).focus({ preventScroll: true });
-      }, 450);
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Initialisation de Swiper pour le carrousel des compétences
+    const swiper = new Swiper('.mySwiper', {
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 30,
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
-  });
 
-  // 3) Form validation & feedback
-  const form = $('#contactForm');
-  if (form) {
-    const nameEl = $('#name');
-    const emailEl = $('#email');
-    const msgEl = $('#message');
-    const feedback = $('#formMessage');
-
-    const ensureErrorNode = (el) => {
-      let node = el.nextElementSibling;
-      if (!node || !node.classList || !node.classList.contains('field-error')) {
-        node = document.createElement('div');
-        node.className = 'field-error';
-        node.setAttribute('aria-live', 'polite');
-        el.insertAdjacentElement('afterend', node);
-      }
-      return node;
+    // 2. Animations au défilement avec Intersection Observer
+    const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                if (element.id === 'home') {
+                    // Animation pour la section Hero
+                    const heroElements = element.querySelectorAll('h1, p, a');
+                    heroElements.forEach((el, index) => {
+                        el.style.animationDelay = `${index * 0.3}s`;
+                        el.classList.add('animate-fade-in-down');
+                        el.classList.remove('opacity-0');
+                    });
+                } else {
+                    // Animation pour les autres sections
+                    element.classList.remove('opacity-0');
+                    element.classList.add('animate-fade-in-up');
+                }
+                observer.unobserve(element);
+            }
+        });
     };
 
-    const setError = (el, message = '') => {
-      const node = ensureErrorNode(el);
-      node.textContent = message;
-      el.setAttribute('aria-invalid', message ? 'true' : 'false');
+    const sections = document.querySelectorAll('header, section');
+    const options = {
+        root: null,
+        threshold: 0.1,
     };
+    const observer = new IntersectionObserver(animateOnScroll, options);
+    sections.forEach(section => observer.observe(section));
 
-    const isEmail = (val) =>
-      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+    // 3. Validation de formulaire et feedback
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
 
-    const validateName = () => {
-      const v = nameEl.value.trim();
-      if (v.length < 2) { setError(nameEl, 'Nom trop court.'); return false; }
-      setError(nameEl, ''); return true;
-    };
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    const validateEmail = () => {
-      const v = emailEl.value.trim();
-      if (!isEmail(v)) { setError(emailEl, 'Email invalide.'); return false; }
-      setError(emailEl, ''); return true;
-    };
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
 
-    const validateMsg = () => {
-      const v = msgEl.value.trim();
-      if (v.length < 10) { setError(msgEl, 'Message trop court (min. 10 caractères).'); return false; }
-      setError(msgEl, ''); return true;
-    };
+        // Validation basique
+        if (!name || !email || !message) {
+            formMessage.textContent = "Veuillez remplir tous les champs.";
+            formMessage.classList.remove('text-green-500');
+            formMessage.classList.add('text-red-500');
+            return;
+        }
+        
+        // Validation d'email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            formMessage.textContent = "Veuillez entrer une adresse email valide.";
+            formMessage.classList.remove('text-green-500');
+            formMessage.classList.add('text-red-500');
+            return;
+        }
 
-    nameEl.addEventListener('input', validateName);
-    emailEl.addEventListener('input', validateEmail);
-    msgEl.addEventListener('input', validateMsg);
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const ok = [validateName(), validateEmail(), validateMsg()].every(Boolean);
-
-      if (!ok) {
-        feedback.textContent = 'Veuillez corriger les champs indiqués.';
-        feedback.classList.remove('success'); 
-        feedback.classList.add('error');
-        return;
-      }
-
-      const subject = encodeURIComponent('Contact Portfolio – Perfect TSHIBANGU JACQUES');
-      const body = encodeURIComponent(
-        `Nom: ${nameEl.value}\nEmail: ${emailEl.value}\n\nMessage:\n${msgEl.value}`
-      );
-
-      feedback.textContent = 'Merci, votre message a été envoyé !';
-      feedback.classList.remove('error');
-      feedback.classList.add('success');
-
-      form.reset();
-      [nameEl, emailEl, msgEl].forEach(el => setError(el, ''));
+        // Simuler l'envoi de données
+        setTimeout(() => {
+            formMessage.textContent = "Message envoyé avec succès ! Je vous répondrai très vite.";
+            formMessage.classList.remove('text-red-500');
+            formMessage.classList.add('text-green-500');
+            contactForm.reset();
+        }, 1000);
     });
-  }
-
-  // 4) Highlight de la section active
-  const sections = $$('section[id]');
-  const navLinks = $$('a[href^="#"]');
-  if ('IntersectionObserver' in window) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(a => {
-            const match = a.getAttribute('href').slice(1) === id;
-            a.classList.toggle('active', match);
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-    sections.forEach(sec => spy.observe(sec));
-  }
-
-  // 5) Animation du footer au scroll
-  const footer = document.querySelector(".footer");
-  if (footer && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          footer.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.2 });
-
-    observer.observe(footer);
-  }
 });
